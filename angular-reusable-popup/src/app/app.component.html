@@ -1,0 +1,47 @@
+<div class="app-container">
+  <header class="app-header">
+    <h1>{{ title }}</h1>
+    <p>Reusable Popup Message System Demo</p>
+  </header>
+
+  <main class="app-main">
+    <div class="button-grid">
+      <button class="btn btn-success" (click)="showSuccessPopup()">
+        Show Success
+      </button>
+
+      <button class="btn btn-error" (click)="showErrorPopup()">
+        Show Error
+      </button>
+
+      <button class="btn btn-warning" (click)="showWarningPopup()">
+        Show Warning
+      </button>
+
+      <button class="btn btn-info" (click)="showInfoPopup()">Show Info</button>
+
+      <button class="btn btn-custom" (click)="showCustomPopup()">
+        Show Custom (No Auto-close)
+      </button>
+
+      <button class="btn btn-close-all" (click)="closeAllPopups()">
+        Close All Popups
+      </button>
+    </div>
+
+    <div class="instructions">
+      <h3>How to use:</h3>
+      <ul>
+        <li>Click any button above to show different types of popups</li>
+        <li>
+          Popups will auto-close after 5 seconds (except errors and custom)
+        </li>
+        <li>You can manually close them using the × button</li>
+        <li>Multiple popups can be shown at the same time</li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- Popup Container - This should be placed at the root level -->
+  <app-popup-container position="top-right"></app-popup-container>
+</div>

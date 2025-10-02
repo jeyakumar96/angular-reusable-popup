@@ -1,0 +1,47 @@
+import { Component } from '@angular/core';
+import { PopupContainerComponent, PopupService } from "./shared/popup-message";
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [PopupContainerComponent],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
+})
+export class AppComponent {
+  title = 'angular-reusable-popup';
+
+  constructor(private popupService: PopupService) { }
+
+  showSuccessPopup() {
+    this.popupService.success('Operation completed successfully!', 'Success');
+  }
+
+  showErrorPopup() {
+    this.popupService.error('Something went wrong. Please try again.', 'Error');
+  }
+
+  showWarningPopup() {
+    this.popupService.warning('Please check your input before proceeding.', 'Warning');
+  }
+
+  showInfoPopup() {
+    this.popupService.info('Here is some important information for you.', 'Information');
+  }
+
+  showCustomPopup() {
+    this.popupService.show(
+      'This is a custom popup with no auto-close.',
+      'success',
+      {
+        title: 'Custom Popup',
+        duration: 0, // No auto-close
+        showCloseButton: true
+      }
+    );
+  }
+
+  closeAllPopups() {
+    this.popupService.closeAll();
+  }
+}
