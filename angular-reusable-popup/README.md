@@ -161,23 +161,3 @@ Modify the transition duration in the component:
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); // Change duration here
 }
 ```
-
-## Development
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.7.
-
-### Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
-
-### Build
-
-Run `ng build` to build the project.
-
-### Running tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## License
-
-MIT License - feel free to use in your projects!
