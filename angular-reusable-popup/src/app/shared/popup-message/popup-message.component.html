@@ -1,9 +1,4 @@
-<div
-  class="popup-overlay"
-  [class]="getPositionClass()"
-  [class.visible]="isVisible"
-  *ngIf="popup"
->
+<div class="popup-overlay" [class]="getPositionClass()" [class.visible]="isVisible" *ngIf="popup">
   <div class="popup-container" [class]="getTypeClass()">
     <div class="popup-header">
       <div class="popup-icon">{{ getIcon() }}</div>
@@ -11,21 +6,13 @@
         <h4 *ngIf="popup.title" class="popup-title">{{ popup.title }}</h4>
         <p class="popup-message">{{ popup.message }}</p>
       </div>
-      <button
-        *ngIf="popup.showCloseButton"
-        class="popup-close-btn"
-        (click)="close()"
-        type="button"
-      >
+      <button *ngIf="popup.showCloseButton" class="popup-close-btn" (click)="close()" type="button">
         ✕
       </button>
     </div>
 
     <!-- Progress bar for auto-close -->
-    <div
-      *ngIf="popup.duration && popup.duration > 0"
-      class="popup-progress-bar"
-      [style.animation-duration.ms]="popup.duration"
-    ></div>
+    <div *ngIf="popup.duration && popup.duration > 0" class="popup-progress-bar"
+      [style.animation-duration.ms]="popup.duration"></div>
   </div>
 </div>
