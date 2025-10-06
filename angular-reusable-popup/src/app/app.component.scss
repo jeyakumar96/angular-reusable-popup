@@ -98,38 +98,6 @@
             background: linear-gradient(45deg, #7c3aed, #6d28d9);
         }
     }
-
-    &.btn-close-all {
-        background: linear-gradient(45deg, #6b7280, #4b5563);
-        color: white;
-
-        &:hover {
-            background: linear-gradient(45deg, #4b5563, #374151);
-        }
-    }
-}
-
-.instructions {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-
-    h3 {
-        color: #1f2937;
-        margin-bottom: 15px;
-        font-size: 1.4em;
-    }
-
-    ul {
-        color: #4b5563;
-        line-height: 1.6;
-
-        li {
-            margin-bottom: 8px;
-        }
-    }
 }
 
 // Responsive design
@@ -147,7 +115,4 @@
         gap: 15px;
     }
 
-    .instructions {
-        padding: 20px;
-    }
 }

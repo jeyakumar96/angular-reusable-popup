@@ -67,4 +67,13 @@ export class PopupService {
   getPopups(): PopupMessage[] {
     return this.popupsSubject.value;
   }
+
+  // Helper method for custom SVG popups
+  showWithSvg(message: string, type: PopupType, svgPath: string, options?: Partial<PopupMessage>): string {
+    return this.show(message, type, {
+      ...options,
+      customIcon: svgPath,
+      iconType: 'svg'
+    });
+  }
 }

@@ -31,17 +31,17 @@ export class AppComponent {
 
   showCustomPopup() {
     this.popupService.show(
-      'This is a custom popup with no auto-close.',
+      'This is a custom popup with SVG icon!',
       'success',
       {
         title: 'Custom Popup',
-        duration: 0, // No auto-close
-        showCloseButton: true
+        duration: 0, //see the progress bar
+        showCloseButton: true,
+        customIcon: 'assets/icons/pop-up-check-circle.svg',
+        iconType: 'svg'
       }
     );
   }
 
-  closeAllPopups() {
-    this.popupService.closeAll();
-  }
+
 }

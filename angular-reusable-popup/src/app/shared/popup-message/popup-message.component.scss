@@ -59,14 +59,13 @@
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   }
 
-  // Type-specific styles matching the image design
+  // Type-specific styles
   &.popup-success {
     background: #CAF1D8;
     border-left: 6px solid #1CA750;
 
     .popup-icon {
       color: #1CA750;
-      background-color: rgba(28, 167, 80, 0.1);
     }
 
     .popup-title {
@@ -169,6 +168,16 @@
   flex-shrink: 0;
 }
 
+.popup-svg-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.popup-text-icon {
+  display: inline-block;
+}
+
 .popup-content {
   flex: 1;
   margin-right: 30px;
@@ -226,30 +235,53 @@
 }
 
 .popup-progress-bar {
-  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
   background-color: rgba(0, 0, 0, 0.1);
-  position: relative;
   overflow: hidden;
+  --duration: 5000ms;
 
-  &::after {
+  &::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4));
-    animation: progress-bar linear forwards;
+    background: currentColor;
+    transform: translateX(-100%);
+    animation: progress-bar var(--duration) linear forwards;
+    opacity: 0.7;
   }
+}
+
+// Type-specific progress bar colors
+.popup-container.popup-success .popup-progress-bar::before {
+  background: #1CA750;
+}
+
+.popup-container.popup-error .popup-progress-bar::before {
+  background: #EF4444;
+}
+
+.popup-container.popup-warning .popup-progress-bar::before {
+  background: #F59E0B;
+}
+
+.popup-container.popup-info .popup-progress-bar::before {
+  background: #3B82F6;
 }
 
 @keyframes progress-bar {
   from {
-    transform: translateX(-100%);
+    transform: translateX(0);
   }
 
   to {
-    transform: translateX(0);
+    transform: translateX(100%);
   }
 }
 

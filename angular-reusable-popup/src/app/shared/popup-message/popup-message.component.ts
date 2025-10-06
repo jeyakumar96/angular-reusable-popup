@@ -10,6 +10,8 @@ export interface PopupMessage {
   type: PopupType;
   duration?: number; // Duration in milliseconds (0 means no auto-close)
   showCloseButton?: boolean;
+  customIcon?: string; // Path to custom SVG icon
+  iconType?: 'text' | 'svg'; // Type of icon to display
 }
 
 @Component({
@@ -64,6 +66,12 @@ export class PopupMessageComponent implements OnInit {
   }
 
   getIcon(): string {
+    // If custom icon is provided, return it
+    if (this.popup.customIcon) {
+      return this.popup.customIcon;
+    }
+
+    // Default text icons
     switch (this.popup.type) {
       case 'success':
         return '✓';
@@ -76,6 +84,14 @@ export class PopupMessageComponent implements OnInit {
       default:
         return 'ℹ';
     }
+  }
+
+  getIconType(): 'text' | 'svg' {
+    return this.popup.iconType || 'text';
+  }
+
+  isCustomIcon(): boolean {
+    return !!this.popup.customIcon;
   }
 
   getTypeClass(): string {
