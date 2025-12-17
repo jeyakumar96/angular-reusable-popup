@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PopupContainerComponent, PopupService } from "./shared/popup-message";
+import { PopupContainerComponent, PopupService } from "./shared/components/popup-container.component/popup-container-component";
 
 @Component({
   selector: 'app-root',
@@ -35,7 +35,7 @@ export class AppComponent {
       'success',
       {
         title: 'Custom Popup',
-        duration: 0, //see the progress bar
+        duration: 5000, //see the progress bar
         showCloseButton: true,
         customIcon: 'assets/icons/pop-up-check-circle.svg',
         iconType: 'svg'

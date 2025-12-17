@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { PopupMessage, PopupType } from './popup-message.component';
+import { PopupMessage, PopupType } from './popup.types';
 
 @Injectable({
   providedIn: 'root'

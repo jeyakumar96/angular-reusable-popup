@@ -1,3 +1,4 @@
+// Common layout/styles inlined from popup-common.scss
 .popup-overlay {
   position: fixed;
   z-index: 9999;
@@ -12,7 +13,6 @@
     pointer-events: auto;
   }
 
-  // Position classes
   &.popup-top-right {
     top: 20px;
     right: 20px;
@@ -57,94 +57,6 @@
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  }
-
-  // Type-specific styles
-  &.popup-success {
-    background: #CAF1D8;
-    border-left: 6px solid #1CA750;
-
-    .popup-icon {
-      color: #1CA750;
-    }
-
-    .popup-title {
-      color: #16a34a;
-    }
-
-    .popup-message {
-      color: #15803d;
-    }
-
-    .popup-close-btn:hover {
-      background: rgba(22, 163, 74, 0.1);
-    }
-  }
-
-  &.popup-error {
-    background: #FECACA;
-    border-left: 6px solid #EF4444;
-
-    .popup-icon {
-      color: #EF4444;
-      background-color: rgba(239, 68, 68, 0.1);
-    }
-
-    .popup-title {
-      color: #DC2626;
-    }
-
-    .popup-message {
-      color: #B91C1C;
-    }
-
-    .popup-close-btn:hover {
-      background: rgba(220, 38, 38, 0.1);
-    }
-  }
-
-  &.popup-warning {
-    background: #FEF3C7;
-    border-left: 6px solid #F59E0B;
-
-    .popup-icon {
-      color: #F59E0B;
-      background-color: rgba(245, 158, 11, 0.1);
-    }
-
-    .popup-title {
-      color: #D97706;
-    }
-
-    .popup-message {
-      color: #B45309;
-    }
-
-    .popup-close-btn:hover {
-      background: rgba(217, 119, 6, 0.1);
-    }
-  }
-
-  &.popup-info {
-    background: #DBEAFE;
-    border-left: 6px solid #3B82F6;
-
-    .popup-icon {
-      color: #3B82F6;
-      background-color: rgba(59, 130, 246, 0.1);
-    }
-
-    .popup-title {
-      color: #2563EB;
-    }
-
-    .popup-message {
-      color: #1D4ED8;
-    }
-
-    .popup-close-btn:hover {
-      background: rgba(37, 99, 235, 0.1);
-    }
   }
 }
 
@@ -217,21 +129,21 @@
   border-radius: 6px;
   transition: all 0.2s ease;
   opacity: 0.7;
+}
 
-  &:hover {
-    opacity: 1;
-    transform: scale(1.1);
-    background: rgba(0, 0, 0, 0.05);
-  }
+.popup-close-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  background: rgba(0, 0, 0, 0.05);
+}
 
-  &:active {
-    transform: scale(0.95);
-  }
+.popup-close-btn:active {
+  transform: scale(0.95);
+}
 
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
-  }
+.popup-close-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
 }
 
 .popup-progress-bar {
@@ -243,36 +155,18 @@
   background-color: rgba(0, 0, 0, 0.1);
   overflow: hidden;
   --duration: 5000ms;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background: currentColor;
-    transform: translateX(-100%);
-    animation: progress-bar var(--duration) linear forwards;
-    opacity: 0.7;
-  }
 }
 
-// Type-specific progress bar colors
-.popup-container.popup-success .popup-progress-bar::before {
-  background: #1CA750;
-}
-
-.popup-container.popup-error .popup-progress-bar::before {
-  background: #EF4444;
-}
-
-.popup-container.popup-warning .popup-progress-bar::before {
-  background: #F59E0B;
-}
-
-.popup-container.popup-info .popup-progress-bar::before {
-  background: #3B82F6;
+.popup-progress-bar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateX(-100%);
+  animation: progress-bar var(--duration) linear forwards;
+  opacity: 0.7;
 }
 
 @keyframes progress-bar {
@@ -285,12 +179,9 @@
   }
 }
 
-// Responsive design
 @media (max-width: 1200px) {
-  .popup-overlay {
-    &.popup-top-right {
-      right: 20px;
-    }
+  .popup-overlay.popup-top-right {
+    right: 20px;
   }
 
   .popup-container {
@@ -299,21 +190,19 @@
 }
 
 @media (max-width: 480px) {
-  .popup-overlay {
 
-    &.popup-top-right,
-    &.popup-top-left {
-      top: 20px;
-      left: 20px;
-      right: 20px;
-    }
+  .popup-overlay.popup-top-right,
+  .popup-overlay.popup-top-left {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+  }
 
-    &.popup-bottom-right,
-    &.popup-bottom-left {
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-    }
+  .popup-overlay.popup-bottom-right,
+  .popup-overlay.popup-bottom-left {
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
   }
 
   .popup-container {
@@ -352,4 +241,29 @@
     height: 24px;
     font-size: 18px;
   }
+}
+
+.popup-container {
+  background: #CAF1D8;
+  border-left: 6px solid #1CA750;
+
+  .popup-icon {
+    color: #1CA750;
+  }
+
+  .popup-title {
+    color: #16a34a;
+  }
+
+  .popup-message {
+    color: #15803d;
+  }
+
+  .popup-close-btn:hover {
+    background: rgba(22, 163, 74, 0.1);
+  }
+}
+
+.popup-progress-bar::before {
+  background: #1CA750;
 }

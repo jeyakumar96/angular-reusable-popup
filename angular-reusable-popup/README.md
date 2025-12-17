@@ -22,23 +22,58 @@ npm start
 
 ## Installation & Setup
 
-1. Copy the popup components to your project:
+1. Add the `PopupContainerComponent` to your root component template:
 
-   ```
-   src/app/shared/popup-message/
-   ├── popup-message.component.ts
-   ├── popup-message.component.html
-   ├── popup-message.component.scss
-   ├── popup-container.component.ts
-   ├── popup.service.ts
-   └── index.ts
-   ```
+```html
+<!-- Add this to your app.component.html -->
+<app-popup-container [position]="'top-right'"></app-popup-container>
+```
 
-2. Add the `PopupContainerComponent` to your root component template:
-   ```html
-   <!-- Add this to your app.component.html -->
-   <app-popup-container position="top-right"></app-popup-container>
-   ```
+2. Use the `PopupService` to show messages:
+
+```ts
+import { Component, inject } from "@angular/core";
+import { PopupService } from "./shared/popup-message/popup.service";
+
+@Component({
+  selector: "app-example",
+  template: `
+    <button (click)="success()">Success</button>
+    <button (click)="error()">Error</button>
+    <button (click)="info()">Info</button>
+    <button (click)="warning()">Warning</button>
+  `,
+  standalone: true,
+})
+export class ExampleComponent {
+  private popup = inject(PopupService);
+
+  success() {
+    this.popup.success("Operation completed successfully!", "Success", 3000);
+  }
+  error() {
+    this.popup.error("Something went wrong", "Error");
+  }
+  info() {
+    this.popup.info("Heads up: new feature", "Info", 5000);
+  }
+  warning() {
+    this.popup.warning("Please check your input", "Warning", 4000);
+  }
+}
+```
+
+3. Optional: Custom SVG icons
+
+```ts
+this.popup.show("Custom icon message", "info", {
+  title: "Custom",
+  iconType: "svg",
+  customIcon: "assets/icons/info.svg",
+  duration: 5000,
+  showCloseButton: true,
+});
+```
 
 ## Usage Examples
 
@@ -138,26 +173,39 @@ Available positions for `PopupContainerComponent`:
 
 ### Colors & Styling
 
-Edit the SCSS variables in `popup-message.component.scss`:
+Common layout styles live in `src/app/shared/popup-message/_popup-common.scss` and are consumed in each variant’s SCSS:
 
 ```scss
-// Success color
-&.popup-success {
-  border-left-color: #10b981; // Change this
-}
+// Example: success variant SCSS
+@use "../../popup-message/popup-common" as *;
 
-// Error color
-&.popup-error {
-  border-left-color: #ef4444; // Change this
+.popup-container {
+  background: #caf1d8;
+  border-left: 6px solid #1ca750;
 }
 ```
 
 ### Animation Duration
 
-Modify the transition duration in the component:
+Modify animation/transition in the shared partial:
 
 ```scss
 .popup-overlay {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); // Change duration here
 }
+
+## Component Structure
+
+
+- Shared styles: `src/app/shared/popup-message/_popup-common.scss`
+- Variants (standalone):
+  - `src/app/shared/components/popup-success-component/popup-success.component.ts`
+  - `src/app/shared/components/popup-error-component/popup-error.component.ts`
+  - `src/app/shared/components/popup-info-component/popup-info.component.ts`
+  - `src/app/shared/components/popup-warning-component/popup-warning.component.ts`
+- Container: `src/app/shared/popup-message/popup-container.component.ts`
+- Types: `src/app/shared/popup-message/popup.types.ts`
+- Service: `src/app/shared/popup-message/popup.service.ts`
+
+The container subscribes to the stream from `PopupService` and renders the appropriate variant component based on `popup.type`.
 ```

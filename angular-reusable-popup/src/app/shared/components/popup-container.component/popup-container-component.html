@@ -1,0 +1,33 @@
+ <div class="popup-container-wrapper">
+      <ng-container *ngFor="let popup of popups$ | async; trackBy: trackByPopupId">
+        <ng-container [ngSwitch]="popup.type">
+          <app-popup-success
+            *ngSwitchCase="'success'"
+            [popup]="popup"
+            [position]="position"
+            (closePopup)="onClosePopup($event)">
+          </app-popup-success>
+
+          <app-popup-error
+            *ngSwitchCase="'error'"
+            [popup]="popup"
+            [position]="position"
+            (closePopup)="onClosePopup($event)">
+          </app-popup-error>
+
+          <app-popup-info
+            *ngSwitchCase="'info'"
+            [popup]="popup"
+            [position]="position"
+            (closePopup)="onClosePopup($event)">
+          </app-popup-info>
+
+          <app-popup-warning
+            *ngSwitchCase="'warning'"
+            [popup]="popup"
+            [position]="position"
+            (closePopup)="onClosePopup($event)">
+          </app-popup-warning>
+        </ng-container>
+      </ng-container>
+    </div>
